@@ -26,7 +26,7 @@ if player hand > 21 , dealer wins
 
 if player stands, then dealers turn  
 
-if dealers hand > 17, hit until <=17   
+if dealers hand < 17, hit until >=17   
 
 if dealer hand > 21, then player wins   
 
