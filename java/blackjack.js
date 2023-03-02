@@ -1,19 +1,15 @@
 //initialize deck of 52 cards
-const cardValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-const suits = ['hearts', 'diamonds', 'clubs', 'spades']
+const cardValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
 
-window.onload = function(){    //ty mozilla
-shuffleDeck(); 
-};
-
-const deck = []; 
+let deck = []; 
 
 for (let i = 0; i < cardValues.length; i++){
   for (let j = 0; j < suits.length; j++){
     deck.push(cardValues[i] + ' of ' + suits[j]);
-    
+
   }
-}
+};
 // console.log(deck);
 //shuffle deck of cards
 function shuffleDeck(){
@@ -24,8 +20,9 @@ for (let i = 0; i < deck.length; i++){
   deck[j] = temp;
  }
 };
-console.log(deck);
 
+shuffleDeck(deck);
+console.log(deck);
 // // deal 2 cards to player and 2 cards to dealer 
 // let playerHand =  []; 
 // let dealerHand = [];
