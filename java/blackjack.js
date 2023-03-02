@@ -17,17 +17,30 @@ for (let i = deck.length -1; i > 0; i--){
   const j = Math.floor(Math.random() * (i + 1));
   [deck[i], deck[j]] = [deck[j], deck[i]];
  }
+ return deck;
 };
 
-shuffleDeck();
-console.log(deck);
-// // deal 2 cards to player and 2 cards to dealer 
-// let playerHand =  []; 
-// let dealerHand = [];
+// shuffleDeck();
+// console.log(deck);
 
-// function dealCard(){
+function dealCard(deck, hand){
+  const card = deck.pop();
+  hand.push(card);
+  return hand;
+};
 
-// }; //.pop to remove cards from deck ? 
+let playerHand =  []; 
+let dealerHand = [];
+let undealtCards = shuffleDeck(deck.slice()); //creates shuffled copy of deck to deal cards from 
+
+playerHand.push(dealCard(undealtCards, playerHand));
+playerHand.push(dealCard(undealtCards, playerHand));
+dealerHand.push(dealCard(undealtCards, dealerHand));
+dealerHand.push(dealCard(undealtCards, dealerHand));
+
+console.log(playerHand);
+console.log(dealerHand);
+console.log(undealtCards);
 // //check if either player or dealer have blackjack(21)
 // function hasBlackJack(){
 
