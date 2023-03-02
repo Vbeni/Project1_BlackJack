@@ -25,22 +25,21 @@ for (let i = deck.length -1; i > 0; i--){
 
 function dealCard(deck, hand){
   const card = deck.pop();
-  hand.push(card);
-  return hand;
+  return [card];
+  
 };
 
 let playerHand =  []; 
 let dealerHand = [];
 let undealtCards = shuffleDeck(deck.slice()); //creates shuffled copy of deck to deal cards from 
 
-playerHand.push(dealCard(undealtCards, playerHand));
-playerHand.push(dealCard(undealtCards, playerHand));
-dealerHand.push(dealCard(undealtCards, dealerHand));
-dealerHand.push(dealCard(undealtCards, dealerHand));
+playerHand.push(...dealCard(undealtCards)); // spread syntax to fix nested array issue 
+dealerHand.push(...dealCard(undealtCards));
 
-console.log(playerHand);
-console.log(dealerHand);
-console.log(undealtCards);
+
+console.log("Player Hand:", playerHand);
+console.log("Dealer Hand:", dealerHand);
+console.log("Undealt Cards:", undealtCards);
 // //check if either player or dealer have blackjack(21)
 // function hasBlackJack(){
 
