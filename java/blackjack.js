@@ -1,27 +1,25 @@
 //initialize deck of 52 cards
 const cardValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+const suits = ['♥', '♦', '♣', '♠'];
 
 let deck = []; 
 
 for (let i = 0; i < cardValues.length; i++){
   for (let j = 0; j < suits.length; j++){
-    deck.push(cardValues[i] + ' of ' + suits[j]);
+    deck.push(cardValues[i] + suits[j]);
 
   }
 };
 // console.log(deck);
 //shuffle deck of cards
-function shuffleDeck(){
-for (let i = 0; i < deck.length; i++){
-  let j = Math.floor(Math.random() * deck.length); 
-  let temp = deck[i];
-  deck[i] = deck[j];
-  deck[j] = temp;
+function shuffleDeck(){                   //Fisher-Yates shuffle algo
+for (let i = deck.length -1; i > 0; i--){        
+  const j = Math.floor(Math.random() * (i + 1));
+  [deck[i], deck[j]] = [deck[j], deck[i]];
  }
 };
 
-shuffleDeck(deck);
+shuffleDeck();
 console.log(deck);
 // // deal 2 cards to player and 2 cards to dealer 
 // let playerHand =  []; 
