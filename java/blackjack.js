@@ -77,26 +77,57 @@ return value;                               //return value of hand
 console.log('Player hand Value ', hasBlackJack(playerHand));
 console.log('Dealer hand Value: ', hasBlackJack(dealerHand));
 
-  //if neither have blackjack then player turn
-function playerTurn(){        //player chooses to hit or stand 
-                              //if player hits then deal another card
-                              //if player hand > 21 , dealer wins 
-};
+let playerTotal = hasBlackJack(playerHand);
+let dealerTotal = hasBlackJack(dealerHand);
+console.log(playerTotal);
+console.log(dealerTotal);
 
-  //if player stands, then dealers turn
-function dealerTurn(){
-                              //if dealers hand > 17, hit until <=17 
-};
+function updateDisplay(){
+//html update score 
+}
+function dealDealerCards(){
+//deal until hand >=17
+}
+document.querySelector("#hit-button").addEventListener('click', function(){
+  playerHand.push(...dealCard(undealtCards));
 
-function whoWon(){             //if dealer hand > 21, then player wins 
-                               //if player hand is close to 21 than dealer, player wins
-                               //if dealer hand is closer to 21 then dealer wins
-                               //if hands are = then tie is declared
+});
 
-};
+document.querySelector("stay-button").addEventListener('click', function(){
+  dealDealerCards();
+  updateDisplay();
+  if (hasBlackJack(dealerHand) > 21){
+    //dealer loses, player wins
+  }
+  else if (dealerTotal > playerTotal){
+    //dealer wins
+  }
+  else {
+    //tie
+  }
+}); 
 
-function reShuffle(){          //PLAY AGAIN
+
+// //if neither have blackjack then player turn
+// function playerTurn(){        //player chooses to hit or stand 
+//                               //if player hits then deal another card
+//                               //if player hand > 21 , dealer wins 
+// };
+
+//   //if player stands, then dealers turn
+// function dealerTurn(){
+//                               //if dealers hand > 17, hit until <=17 
+// };
+
+// function whoWon(){             //if dealer hand > 21, then player wins 
+//                                //if player hand is close to 21 than dealer, player wins
+//                                //if dealer hand is closer to 21 then dealer wins
+//                                //if hands are = then tie is declared
+
+// };
+
+// function reShuffle(){          //PLAY AGAIN
                              
-};    
+// };    
   
-//MAYBE if time allows, introduce 'HARD' mode 3rd player that hits or stands based on remaining cards in deck 
+// //MAYBE if time allows, introduce 'HARD' mode 3rd player that hits or stands based on remaining cards in deck 
