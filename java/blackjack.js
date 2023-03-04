@@ -34,15 +34,14 @@ let dealerHand = [];
 let undealtCards = shuffleDeck(deck.slice()); //creates shuffled copy of deck to deal cards from 
 
 playerHand.push(...dealCard(undealtCards));
+dealerHand.push(...dealCard(undealtCards));// spread syntax to fix nested array issue 
+playerHand.push(...dealCard(undealtCards));
 dealerHand.push(...dealCard(undealtCards));
-playerHand.push(...dealCard(undealtCards)); // spread syntax to fix nested array issue 
-dealerHand.push(...dealCard(undealtCards));
 
 
-
-console.log("Player Hand:", playerHand);
-console.log("Dealer Hand:", dealerHand);
-console.log("Undealt Cards:", undealtCards);
+// console.log("Player Hand:", playerHand);
+// console.log("Dealer Hand:", dealerHand);
+// console.log("Undealt Cards:", undealtCards);
 //check if either player or dealer have blackjack(21)
 function hasBlackJack(hand){
 let value = 0;                       //tracks point value
@@ -74,8 +73,8 @@ for (let i = 0; i < aces.length; i++){       //loop through aces in hand
 return value;                               //return value of hand
 };
 
-console.log('Player hand Value ', hasBlackJack(playerHand));
-console.log('Dealer hand Value: ', hasBlackJack(dealerHand));
+// console.log('Player hand Value ', hasBlackJack(playerHand));
+// console.log('Dealer hand Value: ', hasBlackJack(dealerHand));
 
 let playerTotal = hasBlackJack(playerHand);
 let dealerTotal = hasBlackJack(dealerHand);
@@ -96,58 +95,66 @@ dealerHandDisplay.innerHTML = '';
 for(let i = 0; i < dealerHand.length; i++){
   let cardDiv = document.createElement('div');
   cardDiv.innerHTML = dealerHand[i];
-  playerHandDisplay.appendChild(cardDiv);
+  dealerHandDisplay.appendChild(cardDiv);
 }
+
+let playerHandTotalDisplay = document.querySelector('#player1-sum');
+playerHandTotalDisplay.innerHTML = hasBlackJack(playerHand);
+
+let dealerTotalDisplay = document.querySelector('#dealer-sum');
+dealerTotalDisplay.innerHTML = hasBlackJack(dealerHand);
 }
+
 function dealDealerCards(){
-//deal until hand >=17
+while(hasBlackJack(dealerHand) < 17){
+  dealerHand.push(...dealCard(undealtCards));
+  updateDisplay();
+}
 }
 document.querySelector("#hit-button").addEventListener('click', function(){
   playerHand.push(...dealCard(undealtCards));
   updateDisplay();
-
-  const playerHandValue = hasBlackJack(playerHand);
-  if(playerHand > 21){
-  
+  if(hasBlackJack(playerHand) > 21){
+    console.log('Player 1 Busts/loses');
+    document.querySelector('#hit-button').disabled = true;
+    document.querySelector('#stay-button').disabled = true;
   }
-
-});
+  
+  });
 
 document.querySelector("#stay-button").addEventListener('click', function(){
   dealDealerCards();
   updateDisplay();
   if (hasBlackJack(dealerHand) > 21){
-    //dealer loses, player wins
+    console.log('dealer busts/loses');
+    document.querySelector('#hit-button').disabled = true;
+    document.querySelector('#stay-button').disabled = true;
   }
   else if (dealerTotal > playerTotal){
-    //dealer wins
+    console.log('dealer wins');
+    document.querySelector('#hit-button').disabled = true;
+    document.querySelector('#stay-button').disabled = true;
   }
   else {
-    //tie
+    console.log('the game is a tie');
+    document.querySelector('#hit-button').disabled = true;
+    document.querySelector('#stay-button').disabled = true;
   }
 }); 
 
+document.querySelector('#reset-button').addEventListener('click',function(){
+  deck = shuffleDeck(deck.slice());
+  playerHand = [];
+  dealerHand = [];
+  undealtCards = shuffleDeck(deck.slice());
+  playerHand.push(...dealCard(undealtCards));
+  dealerHand.push(...dealCard(undealtCards));
+  playerHand.push(...dealCard(undealtCards));
+  dealerHand.push(...dealCard(undealtCards));
+  updateDisplay();
 
-// //if neither have blackjack then player turn
-// function playerTurn(){        //player chooses to hit or stand 
-//                               //if player hits then deal another card
-//                               //if player hand > 21 , dealer wins 
-// };
+  document.querySelector("#hit-button").disabled = false;
+  document.querySelector("#stay-button").disabled = false;
+})
 
-//   //if player stands, then dealers turn
-// function dealerTurn(){
-//                               //if dealers hand > 17, hit until <=17 
-// };
-
-// function whoWon(){             //if dealer hand > 21, then player wins 
-//                                //if player hand is close to 21 than dealer, player wins
-//                                //if dealer hand is closer to 21 then dealer wins
-//                                //if hands are = then tie is declared
-
-// };
-
-// function reShuffle(){          //PLAY AGAIN
-                             
-// };    
-  
-// //MAYBE if time allows, introduce 'HARD' mode 3rd player that hits or stands based on remaining cards in deck 
+updateDisplay();
