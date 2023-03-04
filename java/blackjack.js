@@ -39,13 +39,13 @@ playerHand.push(...dealCard(undealtCards));
 dealerHand.push(...dealCard(undealtCards));
 
 
-// console.log("Player Hand:", playerHand);
-// console.log("Dealer Hand:", dealerHand);
-// console.log("Undealt Cards:", undealtCards);
+console.log("Player Hand:", playerHand);
+console.log("Dealer Hand:", dealerHand);
+console.log("Undealt Cards:", undealtCards);
 //check if either player or dealer have blackjack(21)
 function hasBlackJack(hand){
 let value = 0;                       //tracks point value
-let aces = 0;                        //tracks aces
+let aces = [];                        //tracks aces
 
 for (let i = 0; i < hand.length; i++){     //loop through each card in hand
   const card = hand[i];                    //gets current card from hand array
@@ -82,6 +82,8 @@ let dealerTotal = hasBlackJack(dealerHand);
 console.log(playerTotal);
 console.log(dealerTotal);
 
+let playerFinished = false;
+
 function updateDisplay(){
  let playerHandDisplay =  document.querySelector('#player1-cards');
 playerHandDisplay.innerHTML = '';
@@ -90,11 +92,17 @@ for(let i = 0; i < playerHand.length; i++){
   cardDiv.innerHTML = playerHand[i];
   playerHandDisplay.appendChild(cardDiv);
 }
+
 let dealerHandDisplay = document.querySelector('#dealer-cards');
 dealerHandDisplay.innerHTML = '';
 for(let i = 0; i < dealerHand.length; i++){
   let cardDiv = document.createElement('div');
+  if(i === 0 && !playerFinished){
+    cardDiv.innerHTML = '<span class ="card-back"></span>';
+  }
+  else {
   cardDiv.innerHTML = dealerHand[i];
+  }
   dealerHandDisplay.appendChild(cardDiv);
 }
 
@@ -102,7 +110,12 @@ let playerHandTotalDisplay = document.querySelector('#player1-sum');
 playerHandTotalDisplay.innerHTML = hasBlackJack(playerHand);
 
 let dealerTotalDisplay = document.querySelector('#dealer-sum');
-dealerTotalDisplay.innerHTML = hasBlackJack(dealerHand);
+dealerTotal =hasBlackJack(dealerHand);
+dealerTotalDisplay.innerHTML = playerFinished ? dealerTotal : '';
+
+if(playerFinished){
+  dealerTotal.innerHTML = dealerTotal;
+}
 }
 
 function dealDealerCards(){
@@ -123,6 +136,7 @@ document.querySelector("#hit-button").addEventListener('click', function(){
   });
 
 document.querySelector("#stay-button").addEventListener('click', function(){
+  playerFinished = true;
   dealDealerCards();
   updateDisplay();
   if (hasBlackJack(dealerHand) > 21){
