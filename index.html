@@ -9,14 +9,18 @@
     <title>Black Jack</title>
 </head>
 <body>
-    <h2>Dealer: <span id='dealer-sum'><span></span></h2>
-    <div id='dealer-cards'></div>
-
-    <h2>Player 1: <span id='player1-sum'></span></h2>
+ <div class="game-container">
+   <div class="dealer-container">
+    <h2>Dealer: <span id='dealer-sum'>0</span></h2>
+    <div id='dealer-cards' class="card-container"></div>
+   </div>
+   <div class="player1-container">
+    <h2>Player 1: <span id='player1-sum'>0</span></h2>
+    <div id="player1-cards" class="card-container"></div>
 <div id='buttons'>
     <button id="hit-button">Hit</button>
     <button id='stay-button'>Stay</button>
     <button id='reset-button'>New Game</button>
-</div>
+</div></div></div>
 </body>
 </html>

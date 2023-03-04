@@ -79,21 +79,41 @@ console.log('Dealer hand Value: ', hasBlackJack(dealerHand));
 
 let playerTotal = hasBlackJack(playerHand);
 let dealerTotal = hasBlackJack(dealerHand);
+
 console.log(playerTotal);
 console.log(dealerTotal);
 
 function updateDisplay(){
-//html update score 
+ let playerHandDisplay =  document.querySelector('#player1-cards');
+playerHandDisplay.innerHTML = '';
+for(let i = 0; i < playerHand.length; i++){
+  let cardDiv = document.createElement('div');
+  cardDiv.innerHTML = playerHand[i];
+  playerHandDisplay.appendChild(cardDiv);
+}
+let dealerHandDisplay = document.querySelector('#dealer-cards');
+dealerHandDisplay.innerHTML = '';
+for(let i = 0; i < dealerHand.length; i++){
+  let cardDiv = document.createElement('div');
+  cardDiv.innerHTML = dealerHand[i];
+  playerHandDisplay.appendChild(cardDiv);
+}
 }
 function dealDealerCards(){
 //deal until hand >=17
 }
 document.querySelector("#hit-button").addEventListener('click', function(){
   playerHand.push(...dealCard(undealtCards));
+  updateDisplay();
+
+  const playerHandValue = hasBlackJack(playerHand);
+  if(playerHand > 21){
+  
+  }
 
 });
 
-document.querySelector("stay-button").addEventListener('click', function(){
+document.querySelector("#stay-button").addEventListener('click', function(){
   dealDealerCards();
   updateDisplay();
   if (hasBlackJack(dealerHand) > 21){
