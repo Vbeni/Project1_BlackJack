@@ -37,15 +37,45 @@ playerHand.push(...dealCard(undealtCards)); // spread syntax to fix nested array
 dealerHand.push(...dealCard(undealtCards));
 
 
+
 console.log("Player Hand:", playerHand);
 console.log("Dealer Hand:", dealerHand);
 console.log("Undealt Cards:", undealtCards);
-// //check if either player or dealer have blackjack(21)
-// function hasBlackJack(){
+//check if either player or dealer have blackjack(21)
+function hasBlackJack(hand){
+let value = 0;                       //tracks point value
+let aces = 0;                        //tracks aces
 
-// };
-// //28 ways to get blackjack. Hard Code?
-//   //if player has blackjack, player wins
+for (let i = 0; i < hand.length; i++){     //loop through each card in hand
+  const card = hand[i];                    //gets current card from hand array
+  if (card[0] == 'A'){                    //checks if current card is ace
+    aces++;                               //if ace updates ace variable
+    value += 11;                          //adds 11 to value since aces == 11 || 1 
+  } 
+  else if (card[0] == 'K' || card[0] == 'Q' || card[0] == 'J'){
+   value += 10;                           //add 10 to value if K,Q,J
+  } 
+  else {
+    value += parseInt(card);              //else add numeric value of card string
+  }
+}
+
+for (let i = 0; i < aces.length; i++){       //loop through aces in hand
+  if (value + 11 > 21){                      //checks if ace causes hand to 'bust'
+    value += 1;                              //if bust add 1 to value
+  } 
+  else {
+    value += 11;                             //if not bust add 11
+  }
+}
+
+return value;                               //return value of hand
+};
+
+console.log('Player has blackjack: ', hasBlackJack(playerHand));
+console.log('Dealer has blackjack: ', hasBlackJack(dealerHand));
+//28 ways to get blackjack. Hard Code?
+  //if player has blackjack, player wins
 // function hasBlackJack(playerHand){
 
 // };
