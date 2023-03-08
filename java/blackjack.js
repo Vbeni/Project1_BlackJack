@@ -1,6 +1,10 @@
 //initialize deck of 52 cards
 const cardValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 const suits = ['♥', '♦', '♣', '♠'];
+const cardImages = {'2♥': './style/assets/2_hearts.png','3♥':'./style/assets/3_hearts.png', '4♥': './style/assets/4_hearts.png', '5♥': './style/assets/5_hearts.png', '6♥' : './style/assets/6_hearts.png', '7♥' : './style/assets/7_hearts.png', '8♥': './style/assets/8_hearts.png', '9♥': './style/assets/9_hearts.png', '10♥': './style/assets/10_hearts.png', 'J♥':'./style/assets/j_hearts.png', 'Q♥':'./style/assets/Queen_hearts.png','K♥':'./style/assets/k_hearts.png','A♥':'./style/assets/a_hearts.png',
+'2♦': './style/assets/2_diamonds.png','3♦':'./style/assets/3_diamonds.png', '4♦': './style/assets/4_diamonds.png', '5♦': './style/assets/5_diamonds.png', '6♦' : './style/assets/6_diamonds.png', '7♦' : './style/assets/7_diamonds.png', '8♦': './style/assets/8_diamonds.png', '9♦': './style/assets/9_diamonds.png', '10♦': './style/assets/10_diamonds.png', 'J♦':'./style/assets/J_diamonds.png', 'Q♦':'./style/assets/queen_diamonds.png','K♦':'./style/assets/k_diamonds.png', 'A♦':'./style/assets/a_diamonds.png',
+'2♣': './style/assets/2_clubs.png','3♣':'./style/assets/3_clubs.png', '4♣': './style/assets/4_clubs.png', '5♣': './style/assets/5_clubs.png', '6♣' : './style/assets/6_clubs.png', '7♣' : './style/assets/7_clubs.png', '8♣': './style/assets/8_clubs.png', '9♣': './style/assets/9_clubs.png', '10♣': './style/assets/10_clubs.png', 'J♣':'./style/assets/j_clubs.png', 'Q♣':'./style/assets/queen_clubs.png','K♣':'./style/assets/k_clubs.png', 'A♣':'./style/assets/a_clubs.png',
+'2♠': './style/assets/2_spades.png','3♠':'./style/assets/3_spades.png', '4♠': './style/assets/4_spades.png', '5♠': './style/assets/5_spades.png', '6♠' : './style/assets/6_spades.png', '7♠' : './style/assets/7_spades.png', '8♠': './style/assets/8_spades.png', '9♠': './style/assets/9_spades.png', '10♠': './style/assets/10_spades.png', 'J♠':'style/assets/j_spades.png', 'Q♠':'./style/assets/queen_spades.png','K♠':'./style/assets/k_spades.png', 'A♠': './style/assets/a_spades.png'};
 
 let deck = []; 
 
@@ -25,6 +29,7 @@ for (let i = deck.length -1; i > 0; i--){
 
 function dealCard(deck, hand){
   const card = deck.pop();
+
   return [card];
   
 };
@@ -49,14 +54,14 @@ let aces = [];                        //tracks aces
 
 for (let i = 0; i < hand.length; i++){     //loop through each card in hand
   const card = hand[i];                    //gets current card from hand array
-  if (card[0] == 'A'){                    //checks if current card is ace
+  if (card && card[0] == 'A'){                    //checks if current card is ace
     aces++;                               //if ace updates ace variable
     value += 11;                          //adds 11 to value since aces == 11 || 1 
   } 
-  else if (card[0] == 'K' || card[0] == 'Q' || card[0] == 'J'){
+  else if (card && card[0] == 'K' || card && card[0] == 'Q' || card && card[0] == 'J'){
    value += 10;                           //add 10 to value if K,Q,J
   } 
-  else {
+  else if (card) {
     value += parseInt(card);              //else add numeric value of card string
   }
 }
@@ -84,13 +89,16 @@ console.log(dealerTotal);
 
 let playerFinished = false;
 
-function updateDisplay(){
+function updateDisplay(card){
  let playerHandDisplay =  document.querySelector('#player1-cards');
 playerHandDisplay.innerHTML = '';
 for(let i = 0; i < playerHand.length; i++){
   let cardDiv = document.createElement('div');
-  cardDiv.innerHTML = playerHand[i];
+  const cardImg = document.createElement('img');
+  cardImg.src = cardImages[playerHand[i]];
+  cardDiv.appendChild(cardImg);
   playerHandDisplay.appendChild(cardDiv);
+  
 }
 
 let dealerHandDisplay = document.querySelector('#dealer-cards');
@@ -98,10 +106,16 @@ dealerHandDisplay.innerHTML = '';
 for(let i = 0; i < dealerHand.length; i++){
   let cardDiv = document.createElement('div');
   if(i === 0 && !playerFinished){
-    cardDiv.innerHTML = '<span class ="card-back"></span>';
+    const cardBackImg = document.createElement('img');
+    cardBackImg.src = 'style/assets/back.png';
+    cardBackImg.alt = 'back';
+    cardDiv.appendChild(cardBackImg);
+    // cardDiv.innerHTML = '<span class ="card-back"></span>';
   }
   else {
-  cardDiv.innerHTML = dealerHand[i];
+  const cardImg = document.createElement('img');
+  cardImg.src = cardImages[dealerHand[i]];
+  cardDiv.appendChild(cardImg);
   }
   dealerHandDisplay.appendChild(cardDiv);
 }
@@ -169,6 +183,7 @@ document.querySelector('#reset-button').addEventListener('click',function(){
 
   document.querySelector("#hit-button").disabled = false;
   document.querySelector("#stay-button").disabled = false;
+  playerFinished = false;
 })
 
 updateDisplay();

@@ -1,0 +1,11 @@
+body{
+    background-image: url('./images/background_3.png');
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center 20%;
+}
+
+
+.card-container img{
+transform: rotate3d(1, 0, 0, 75deg);
+}
