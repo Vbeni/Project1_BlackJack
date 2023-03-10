@@ -155,7 +155,6 @@ document.querySelector("#hit-button").addEventListener('click', function(){
     
     console.log('player busts/loses');
     updateDisplay(null, 'dealer');
-    // playerFinished = true;
     document.querySelector('#hit-button').disabled = true;
     document.querySelector('#stay-button').disabled = true;
   }
@@ -206,13 +205,17 @@ document.querySelector('#reset-button').addEventListener('click',function(){
   dealerHand.push(...dealCard(undealtCards));
   playerHand.push(...dealCard(undealtCards));
   dealerHand.push(...dealCard(undealtCards));
+  playerFinished = false;
   updateDisplay();
+
 
   document.querySelector("#hit-button").disabled = false;
   document.querySelector("#stay-button").disabled = false;
-  playerFinished = false;
 
+  
   document.querySelector('#result').innerHTML = '';
+  // document.querySelector('#dealer-sum').innerHtml = '';
+  
 })
 
 updateDisplay();
