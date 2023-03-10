@@ -1,5 +1,5 @@
 body{
-    background-image: url('./images/background_3.png');
+    background-image: url('./images/background_6-export.gif');
     background-repeat: no-repeat;
     background-color: black;
     background-position: center 20%;
@@ -67,3 +67,12 @@ button:hover{
     border-color: #fff;
   }
   
+#result{
+    font-family: 'VT323',monospace;
+    font-size: 38px;
+    color: rgb(54, 216, 224);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 5px 3px 3px #000000;
+    position: absolute;
+}
