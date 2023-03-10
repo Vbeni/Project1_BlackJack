@@ -89,7 +89,7 @@ console.log(dealerTotal);
 
 let playerFinished = false;
 
-function updateDisplay(card){
+function updateDisplay(card, winner){
  let playerHandDisplay =  document.querySelector('#player1-cards');
 playerHandDisplay.innerHTML = '';
 for(let i = 0; i < playerHand.length; i++){
@@ -130,6 +130,16 @@ dealerTotalDisplay.innerHTML = playerFinished ? dealerTotal : '';
 if(playerFinished){
   dealerTotal.innerHTML = dealerTotal;
 }
+let resultDisplay = document.querySelector('#result');
+if (winner =='player'){
+  resultDisplay.innerHTML = 'Player Wins!';
+}
+else if(winner ==='dealer'){
+  resultDisplay.innerHTML = 'Dealer Wins!';
+}
+else if(winner ==='tie'){
+  resultDisplay.innerHTML = 'Tie Game!';
+}
 }
 
 function dealDealerCards(){
@@ -141,12 +151,20 @@ while(hasBlackJack(dealerHand) < 17){
 document.querySelector("#hit-button").addEventListener('click', function(){
   playerHand.push(...dealCard(undealtCards));
   updateDisplay();
-  if(hasBlackJack(playerHand) > 21){
-    console.log('Player 1 Busts/loses');
+  if (hasBlackJack(playerHand) > 21){
+    
+    console.log('player busts/loses');
+    updateDisplay(null, 'dealer');
+    // playerFinished = true;
     document.querySelector('#hit-button').disabled = true;
     document.querySelector('#stay-button').disabled = true;
   }
-  
+  else if (hasBlackJack(playerHand) === 21){
+    console.log('player wins!');
+    updateDisplay(null, 'player');
+    document.querySelector('#hit-button').disabled = true;
+    document.querySelector('#stay-button').disabled = true;
+  }
   });
 
 document.querySelector("#stay-button").addEventListener('click', function(){
@@ -157,16 +175,25 @@ document.querySelector("#stay-button").addEventListener('click', function(){
     console.log('dealer busts/loses');
     document.querySelector('#hit-button').disabled = true;
     document.querySelector('#stay-button').disabled = true;
+    updateDisplay(null, 'player');
   }
-  else if (dealerTotal > playerTotal){
+  else if (hasBlackJack(dealerHand) < hasBlackJack(playerHand)){
+    console.log('player wins');
+    document.querySelector('#hit-button').disabled = true;
+    document.querySelector('#stay-button').disabled = true;
+    updateDisplay(null, 'player');
+  }
+  else if (hasBlackJack(dealerHand)> hasBlackJack(playerHand)){
     console.log('dealer wins');
     document.querySelector('#hit-button').disabled = true;
     document.querySelector('#stay-button').disabled = true;
+    updateDisplay(null, 'dealer');
   }
   else {
     console.log('the game is a tie');
     document.querySelector('#hit-button').disabled = true;
     document.querySelector('#stay-button').disabled = true;
+    updateDisplay(null, 'tie');
   }
 }); 
 
@@ -184,6 +211,8 @@ document.querySelector('#reset-button').addEventListener('click',function(){
   document.querySelector("#hit-button").disabled = false;
   document.querySelector("#stay-button").disabled = false;
   playerFinished = false;
+
+  document.querySelector('#result').innerHTML = '';
 })
 
 updateDisplay();
