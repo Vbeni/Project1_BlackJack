@@ -1,3 +1,14 @@
+const music = document.querySelector('#music');
+music.volume = 0.03;
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+  }
+  else{
+  music.pause();
+  }
+}
+document.querySelector('#music-button').addEventListener('click', toggleMusic);
 //initialize deck of 52 cards
 const cardValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 const suits = ['♥', '♦', '♣', '♠'];
@@ -44,10 +55,6 @@ playerHand.push(...dealCard(undealtCards));
 dealerHand.push(...dealCard(undealtCards));
 
 
-console.log("Player Hand:", playerHand);
-console.log("Dealer Hand:", dealerHand);
-console.log("Undealt Cards:", undealtCards);
-//check if either player or dealer have blackjack(21)
 function hasBlackJack(hand){
 let value = 0;                       //tracks point value
 let aces = [];                        //tracks aces

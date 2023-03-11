@@ -5,20 +5,6 @@ body{
     background-position: center 20%;
 }
 
-.game-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150vh;
-}
-
-.card-container{
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-}
-
-
 h2{
     font-family: 'VT323',monospace;
     font-size: 32px;
@@ -29,25 +15,45 @@ h2{
     text-shadow: 3px 3px 3px #000000;
 }
 
+.game-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    height: 150vh;
+}
+
 .dealer-container{
-    margin-bottom: 195px;
+    margin-top: 410px;
+    margin-left: 150px;
+    margin-bottom: 0;
     padding: 50px;
+    align-self: start;
 }
 
 .player1-container{
-    margin-bottom: 185px;
+    margin-bottom: 0;
+    margin-right: 150px;
     padding: 50px;
+    align-self: end;
+}
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    }
+
+#dealer-cards{
+    margin-top: 10px;
+}
+#player1-cards{
+    margin-bottom: 430px;
 }
 
 #buttons{
     position: absolute;
     bottom: 60px;
-}
-
-.dealer-container h2 span,
-.player1-container h2 span {
-  display: block;
-  margin-bottom: 200px;
 }
 
 button {
@@ -65,6 +71,12 @@ button:hover{
     background-color: #fff;
     color: #1f1f1f;
     border-color: #fff;
+  }
+
+#music-button{
+position: absolute;
+left: 50px;
+top: 50%;
   }
   
 #result{
