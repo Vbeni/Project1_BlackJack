@@ -1,0 +1,90 @@
+body{
+    background-image: url('./images/background_6-export.gif');
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center 20%;
+}
+
+h2{
+    font-family: 'VT323',monospace;
+    font-size: 32px;
+    color: rgb(54, 216, 224);
+    text-align:center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 3px #000000;
+}
+
+.game-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    height: 150vh;
+}
+
+.dealer-container{
+    margin-top: 410px;
+    margin-left: 150px;
+    margin-bottom: 0;
+    padding: 50px;
+    align-self: start;
+}
+
+.player1-container{
+    margin-bottom: 0;
+    margin-right: 150px;
+    padding: 50px;
+    align-self: end;
+}
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    }
+
+#dealer-cards{
+    margin-top: 10px;
+}
+#player1-cards{
+    margin-bottom: 430px;
+}
+
+#buttons{
+    position: absolute;
+    bottom: 60px;
+}
+
+button {
+    background-color: #1f1f1f;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'VT323',monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+  }
+  
+button:hover{
+    background-color: #fff;
+    color: #1f1f1f;
+    border-color: #fff;
+  }
+
+#music-button{
+position: absolute;
+left: 50px;
+top: 50%;
+  }
+  
+#result{
+    font-family: 'VT323',monospace;
+    font-size: 38px;
+    color: rgb(54, 216, 224);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 5px 3px 3px #000000;
+    position: absolute;
+}
