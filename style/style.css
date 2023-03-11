@@ -1,3 +1,5 @@
+/*working on adjusting css to % instead of pixels to adjust to different browser sizes*/
+
 body{
     background-image: url('./images/background_6-export.gif');
     background-repeat: no-repeat;
