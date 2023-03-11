@@ -38,21 +38,21 @@ for (let i = deck.length -1; i > 0; i--){
 // shuffleDeck();
 // console.log(deck);
 
-function dealCard(deck, hand){
+function dealCard(deck){
   const card = deck.pop();
 
-  return [card];
+  return card;
   
 };
 
 let playerHand =  []; 
 let dealerHand = [];
-let undealtCards = shuffleDeck(deck.slice()); //creates shuffled copy of deck to deal cards from 
+let undealtCards = shuffleDeck(deck); //creates shuffled copy of deck to deal cards from 
 
-playerHand.push(...dealCard(undealtCards));
-dealerHand.push(...dealCard(undealtCards));// spread syntax to fix nested array issue 
-playerHand.push(...dealCard(undealtCards));
-dealerHand.push(...dealCard(undealtCards));
+playerHand.push(dealCard(undealtCards));
+dealerHand.push(dealCard(undealtCards));// spread syntax to fix nested array issue 
+playerHand.push(dealCard(undealtCards));
+dealerHand.push(dealCard(undealtCards));
 
 
 function hasBlackJack(hand){
@@ -139,13 +139,13 @@ else if(winner ==='tie'){
 
 function dealDealerCards(){
 while(hasBlackJack(dealerHand) < 17){
-  dealerHand.push(...dealCard(undealtCards));
+  dealerHand.push(dealCard(undealtCards));
   updateDisplay();
 }
 }
 
 document.querySelector("#hit-button").addEventListener('click', function(){
-  playerHand.push(...dealCard(undealtCards));
+  playerHand.push(dealCard(undealtCards));
   updateDisplay();
   if (hasBlackJack(playerHand) > 21){
     
@@ -165,7 +165,7 @@ document.querySelector("#hit-button").addEventListener('click', function(){
     updateDisplay();
   }
   });
-  
+
 document.querySelector("#stay-button").addEventListener('click', function(){
   playerFinished = true;
   dealDealerCards();
@@ -197,14 +197,14 @@ document.querySelector("#stay-button").addEventListener('click', function(){
 }); 
 
 document.querySelector('#reset-button').addEventListener('click',function(){
-  deck = shuffleDeck(deck.slice());
+  deck = shuffleDeck(deck);
   playerHand = [];
   dealerHand = [];
   undealtCards = shuffleDeck(deck.slice());
-  playerHand.push(...dealCard(undealtCards));
-  dealerHand.push(...dealCard(undealtCards));
-  playerHand.push(...dealCard(undealtCards));
-  dealerHand.push(...dealCard(undealtCards));
+  playerHand.push(dealCard(undealtCards));
+  dealerHand.push(dealCard(undealtCards));
+  playerHand.push(dealCard(undealtCards));
+  dealerHand.push(dealCard(undealtCards));
   playerFinished = false;
   updateDisplay();
 
