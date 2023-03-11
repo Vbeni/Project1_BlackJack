@@ -1,6 +1,9 @@
 # Project1_BlackJack  
 
 [WireFrame Mockup](https://www.figma.com/file/ITG5b2m8dWFdAlYj7lRXOY/Untitled?node-id=1%3A213&t=i0wyO2RFE2D6IakH-1)  
+<img width="1042" alt="Screenshot 2023-03-11 at 12 30 43 PM" src="https://user-images.githubusercontent.com/123101303/224503065-6ef5f211-8ca3-475f-bdea-524dfbb2df01.png">
+
+
 
 ## How to Play
 The game will deal two cards to both the player and dealer. <br>The player can then choose to "Hit" to draw another card, or "Stay" to end their turn. </br>
