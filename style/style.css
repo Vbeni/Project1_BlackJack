@@ -45,15 +45,15 @@ h2{
     }
 
 #dealer-cards{
-    margin-top: 10px;
+    margin-top: 10%;
 }
 #player1-cards{
-    margin-bottom: 430px;
+    margin-bottom: 270%;
 }
 
 #buttons{
     position: absolute;
-    bottom: 60px;
+    bottom: 20%;
 }
 
 button {
