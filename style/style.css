@@ -2,7 +2,7 @@ body{
     background-image: url('./images/background_6-export.gif');
     background-repeat: no-repeat;
     background-color: black;
-    background-position: center 20%;
+    background-position: center 10%;  /* centered horizontally & 10% from top vertically*/
 }
 
 h2{
@@ -16,10 +16,10 @@ h2{
 }
 
 .game-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    align-items: center;
+    display: grid;  /* arranged in grid */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns even space*/
+    justify-items: center;   /* horizontal alignment*/
+    align-items: center;     /* vertical alignment*/
     height: 150vh;
 }
 
@@ -28,16 +28,17 @@ h2{
     margin-left: 150px;
     margin-bottom: 0;
     padding: 50px;
-    align-self: start;
+    align-self: start;  /* align to the start of grid/top of container*/
 }
 
 .player1-container{
     margin-bottom: 0;
     margin-right: 150px;
     padding: 50px;
-    align-self: end;
+    align-self: end;  /* align to the end of grid/bottomof container*/
+
 }
-.card-container{
+.card-container{    /* flex container to set cards next to each other*/
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -48,12 +49,12 @@ h2{
     margin-top: 10%;
 }
 #player1-cards{
-    margin-bottom: 270%;
+    margin-bottom: 290%;
 }
 
 #buttons{
     position: absolute;
-    bottom: 20%;
+    bottom: 15%;
 }
 
 button {
