@@ -85,10 +85,17 @@ return value;                               //return value of hand
 let playerFinished = false;
 
 function updateDisplay(card, winner){
+
 let playerTotal = hasBlackJack(playerHand);
 let dealerTotal = hasBlackJack(dealerHand);
 let playerHandDisplay =  document.querySelector('#player1-cards');
+let resultDisplay = document.querySelector('#result');
+let dealerHandDisplay = document.querySelector('#dealer-cards');
+let playerHandTotalDisplay = document.querySelector('#player1-sum');
+let dealerTotalDisplay = document.querySelector('#dealer-sum');
 playerHandDisplay.innerHTML = '';
+dealerHandDisplay.innerHTML = '';
+
 for(let i = 0; i < playerHand.length; i++){
   let cardDiv = document.createElement('div');
   const cardImg = document.createElement('img');
@@ -97,9 +104,6 @@ for(let i = 0; i < playerHand.length; i++){
   playerHandDisplay.appendChild(cardDiv);
   
 }
-
-let dealerHandDisplay = document.querySelector('#dealer-cards');
-dealerHandDisplay.innerHTML = '';
 for(let i = 0; i < dealerHand.length; i++){
   let cardDiv = document.createElement('div');
   if(i === 0 && !playerFinished){
@@ -107,7 +111,7 @@ for(let i = 0; i < dealerHand.length; i++){
     cardBackImg.src = 'style/assets/back.png';
     cardBackImg.alt = 'back';
     cardDiv.appendChild(cardBackImg);
-    // cardDiv.innerHTML = '<span class ="card-back"></span>';
+  
   }
   else {
   const cardImg = document.createElement('img');
@@ -117,17 +121,11 @@ for(let i = 0; i < dealerHand.length; i++){
   dealerHandDisplay.appendChild(cardDiv);
 }
 
-let playerHandTotalDisplay = document.querySelector('#player1-sum');
-playerHandTotalDisplay.innerHTML = hasBlackJack(playerHand);
 
-let dealerTotalDisplay = document.querySelector('#dealer-sum');
-dealerTotal =hasBlackJack(dealerHand);
+playerHandTotalDisplay.innerHTML = hasBlackJack(playerHand);
 dealerTotalDisplay.innerHTML = playerFinished ? dealerTotal : '';
 
-if(playerFinished){
-  dealerTotal.innerHTML = dealerTotal;
-}
-let resultDisplay = document.querySelector('#result');
+
 if (winner =='player'){
   resultDisplay.innerHTML = 'Player Wins!';
 }
@@ -145,6 +143,7 @@ while(hasBlackJack(dealerHand) < 17){
   updateDisplay();
 }
 }
+
 document.querySelector("#hit-button").addEventListener('click', function(){
   playerHand.push(...dealCard(undealtCards));
   updateDisplay();
@@ -154,15 +153,19 @@ document.querySelector("#hit-button").addEventListener('click', function(){
     updateDisplay(null, 'dealer');
     document.querySelector('#hit-button').disabled = true;
     document.querySelector('#stay-button').disabled = true;
+    playerFinished = true;
+    updateDisplay();
   }
   else if (hasBlackJack(playerHand) === 21){
     console.log('player wins!');
     updateDisplay(null, 'player');
     document.querySelector('#hit-button').disabled = true;
     document.querySelector('#stay-button').disabled = true;
+    playerFinished = true;
+    updateDisplay();
   }
   });
-
+  
 document.querySelector("#stay-button").addEventListener('click', function(){
   playerFinished = true;
   dealDealerCards();
@@ -211,7 +214,6 @@ document.querySelector('#reset-button').addEventListener('click',function(){
 
   
   document.querySelector('#result').innerHTML = '';
-  // document.querySelector('#dealer-sum').innerHtml = '';
   
 })
 
