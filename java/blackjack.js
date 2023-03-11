@@ -57,47 +57,37 @@ dealerHand.push(...dealCard(undealtCards));
 
 function hasBlackJack(hand){
 let value = 0;                       //tracks point value
-let aces = [];                        //tracks aces
+let aces = 0;                        //tracks aces
 
 for (let i = 0; i < hand.length; i++){     //loop through each card in hand
   const card = hand[i];                    //gets current card from hand array
-  if (card && card[0] == 'A'){                    //checks if current card is ace
+  if (card[0] === 'A'){                    //checks if current card is ace
     aces++;                               //if ace updates ace variable
     value += 11;                          //adds 11 to value since aces == 11 || 1 
   } 
-  else if (card && card[0] == 'K' || card && card[0] == 'Q' || card && card[0] == 'J'){
+  else if (card[0] === 'K' || card[0] === 'Q' || card[0] === 'J'){
    value += 10;                           //add 10 to value if K,Q,J
   } 
-  else if (card) {
+  else {
     value += parseInt(card);              //else add numeric value of card string
   }
 }
 
-for (let i = 0; i < aces.length; i++){       //loop through aces in hand
-  if (value + 11 > 21){                      //checks if ace causes hand to 'bust'
-    value += 1;                              //if bust add 1 to value
-  } 
-  else {
-    value += 11;                             //if not bust add 11
-  }
+for (let i = 0; i < aces; i++){       //loop through aces in hand
+  if (value > 21){                      //checks if ace causes hand to 'bust'
+    value -= 10;                              //if bust add 1 to value
+  }                            
 }
 
 return value;                               //return value of hand
 };
 
-// console.log('Player hand Value ', hasBlackJack(playerHand));
-// console.log('Dealer hand Value: ', hasBlackJack(dealerHand));
-
-let playerTotal = hasBlackJack(playerHand);
-let dealerTotal = hasBlackJack(dealerHand);
-
-console.log(playerTotal);
-console.log(dealerTotal);
-
 let playerFinished = false;
 
 function updateDisplay(card, winner){
- let playerHandDisplay =  document.querySelector('#player1-cards');
+let playerTotal = hasBlackJack(playerHand);
+let dealerTotal = hasBlackJack(dealerHand);
+let playerHandDisplay =  document.querySelector('#player1-cards');
 playerHandDisplay.innerHTML = '';
 for(let i = 0; i < playerHand.length; i++){
   let cardDiv = document.createElement('div');
