@@ -1,5 +1,16 @@
 const music = document.querySelector('#music');
+const musicButton = document.querySelector('#music-button');
+const playerHandDisplay = document.querySelector('#player1-cards');
+const resultDisplay = document.querySelector('#result');
+const dealerHandDisplay = document.querySelector('#dealer-cards');
+const playerHandTotalDisplay = document.querySelector('#player1-sum');
+const dealerTotalDisplay = document.querySelector('#dealer-sum');
+const hitButton = document.querySelector("#hit-button");
+const stayButton = document.querySelector("#stay-button");
+const resetButton = document.querySelector('#reset-button');
+
 music.volume = 0.03;
+
 function toggleMusic(){
   if(music.paused){
     music.play();
@@ -8,7 +19,8 @@ function toggleMusic(){
   music.pause();
   }
 }
-document.querySelector('#music-button').addEventListener('click', toggleMusic);
+musicButton.addEventListener('click', toggleMusic);
+
 //initialize deck of 52 cards
 const cardValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 const suits = ['♥', '♦', '♣', '♠'];
@@ -85,14 +97,7 @@ return value;                               //return value of hand
 let playerFinished = false;
 
 function updateDisplay(card, winner){
-
-let playerTotal = hasBlackJack(playerHand);
 let dealerTotal = hasBlackJack(dealerHand);
-let playerHandDisplay =  document.querySelector('#player1-cards');
-let resultDisplay = document.querySelector('#result');
-let dealerHandDisplay = document.querySelector('#dealer-cards');
-let playerHandTotalDisplay = document.querySelector('#player1-sum');
-let dealerTotalDisplay = document.querySelector('#dealer-sum');
 playerHandDisplay.innerHTML = '';
 dealerHandDisplay.innerHTML = '';
 
@@ -144,59 +149,59 @@ while(hasBlackJack(dealerHand) < 17){
 }
 }
 
-document.querySelector("#hit-button").addEventListener('click', function(){
+hitButton.addEventListener('click', function(){
   playerHand.push(dealCard(undealtCards));
   updateDisplay();
   if (hasBlackJack(playerHand) > 21){
     
     console.log('player busts/loses');
     updateDisplay(null, 'dealer');
-    document.querySelector('#hit-button').disabled = true;
-    document.querySelector('#stay-button').disabled = true;
+    hitButton.disabled = true;
+    stayButton.disabled = true;
     playerFinished = true;
     updateDisplay();
   }
   else if (hasBlackJack(playerHand) === 21){
     console.log('player wins!');
     updateDisplay(null, 'player');
-    document.querySelector('#hit-button').disabled = true;
-    document.querySelector('#stay-button').disabled = true;
+    hitButton.disabled = true;
+    stayButton.disabled = true;
     playerFinished = true;
     updateDisplay();
   }
   });
 
-document.querySelector("#stay-button").addEventListener('click', function(){
+stayButton.addEventListener('click', function(){
   playerFinished = true;
   dealDealerCards();
   updateDisplay();
   if (hasBlackJack(dealerHand) > 21){
     console.log('dealer busts/loses');
-    document.querySelector('#hit-button').disabled = true;
-    document.querySelector('#stay-button').disabled = true;
+    hitButton.disabled = true;
+    stayButton.disabled = true;
     updateDisplay(null, 'player');
   }
   else if (hasBlackJack(dealerHand) < hasBlackJack(playerHand)){
     console.log('player wins');
-    document.querySelector('#hit-button').disabled = true;
-    document.querySelector('#stay-button').disabled = true;
+    hitButton.disabled = true;
+    stayButton.disabled = true;
     updateDisplay(null, 'player');
   }
   else if (hasBlackJack(dealerHand)> hasBlackJack(playerHand)){
     console.log('dealer wins');
-    document.querySelector('#hit-button').disabled = true;
-    document.querySelector('#stay-button').disabled = true;
+    hitButton.disabled = true;
+    stayButton.disabled = true;
     updateDisplay(null, 'dealer');
   }
   else {
     console.log('the game is a tie');
-    document.querySelector('#hit-button').disabled = true;
-    document.querySelector('#stay-button').disabled = true;
+    hitButton.disabled = true;
+    stayButton.disabled = true;
     updateDisplay(null, 'tie');
   }
 }); 
 
-document.querySelector('#reset-button').addEventListener('click',function(){
+resetButton.addEventListener('click',function(){
   deck = shuffleDeck(deck);
   playerHand = [];
   dealerHand = [];
@@ -209,11 +214,11 @@ document.querySelector('#reset-button').addEventListener('click',function(){
   updateDisplay();
 
 
-  document.querySelector("#hit-button").disabled = false;
-  document.querySelector("#stay-button").disabled = false;
+  hitButton.disabled = false;
+  stayButton.disabled = false;
 
   
-  document.querySelector('#result').innerHTML = '';
+  resultDisplay.innerHTML = '';
   
 })
 
