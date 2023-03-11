@@ -17,4 +17,4 @@ You can play the game by clicking on this [link.](https://vbeni.github.io/Projec
 
 ## Sources
 The card images were sourced from [Website](https://unbent.itch.io/yewbi-playing-card-set-1)
-[Music](https://www.youtube.com/watch?v=RdfJMDalucI&ab_channel=OkamiDeluxe)
+<br>[Background Music](https://www.youtube.com/watch?v=RdfJMDalucI&ab_channel=OkamiDeluxe)</br>
