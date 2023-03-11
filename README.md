@@ -1,7 +1,8 @@
 # Project1_BlackJack  
 
 [WireFrame Mockup](https://www.figma.com/file/ITG5b2m8dWFdAlYj7lRXOY/Untitled?node-id=1%3A213&t=i0wyO2RFE2D6IakH-1)  
-<img width="1042" alt="Screenshot 2023-03-11 at 12 30 43 PM" src="https://user-images.githubusercontent.com/123101303/224503065-6ef5f211-8ca3-475f-bdea-524dfbb2df01.png">
+
+<img width="1044" alt="Screenshot 2023-03-11 at 12 32 18 PM" src="https://user-images.githubusercontent.com/123101303/224503132-2e69210a-2630-427b-a326-8c30bc5af83a.png">
 
 
 
