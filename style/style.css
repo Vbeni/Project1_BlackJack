@@ -1,10 +1,12 @@
-/*working on adjusting css to % instead of pixels to adjust to different browser sizes*/
-
 body{
     background-image: url('./images/background_6-export.gif');
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-repeat: no-repeat;
     background-color: black;
-    background-position: center 10%;  /* centered horizontally & 10% from top vertically*/
+    background-position: center center;
+    height: 100vh;
 }
 
 h2{
@@ -16,49 +18,32 @@ h2{
     letter-spacing: 2px;
     text-shadow: 3px 3px 3px #000000;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
 .game-container{
-    display: grid;  /* arranged in grid */
-    grid-template-columns: repeat(2, 1fr); /* 2 columns even space*/
-    justify-items: center;   /* horizontal alignment*/
-    align-items: center;     /* vertical alignment*/
-    height: 150vh;
+    display: grid; 
+    grid-template-columns: repeat(2, 2fr); 
+    justify-items: center;   
+    align-items: end;  
 }
-
-.dealer-container{
-    margin-top: 410px;
-    margin-left: 150px;
-    margin-bottom: 0;
-    padding: 50px;
-    align-self: start;  /* align to the start of grid/top of container*/
-}
-
-.player1-container{
-    margin-bottom: 0;
-    margin-right: 150px;
-    padding: 50px;
-    align-self: end;  /* align to the end of grid/bottomof container*/
-
-}
-.card-container{    /* flex container to set cards next to each other*/
+.card-container{   
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     }
-
-#dealer-cards{
-    margin-top: 10%;
-}
-#player1-cards{
-    margin-bottom: 290%;
-}
-
 #buttons{
-    position: absolute;
-    bottom: 15%;
+    display: flex;
+    padding: 5%;
+    justify-content: center;
+    align-items: center;
+    
 }
-
 button {
     background-color: #1f1f1f;
     color: #fff;
@@ -78,8 +63,7 @@ button:hover{
 
 #music-button{
 position: absolute;
-left: 50px;
-top: 50%;
+left: 0;
   }
   
 #result{
