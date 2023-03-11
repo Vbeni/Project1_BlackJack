@@ -2,36 +2,12 @@
 
 [WireFrame Mockup](https://www.figma.com/file/ITG5b2m8dWFdAlYj7lRXOY/Untitled?node-id=1%3A213&t=i0wyO2RFE2D6IakH-1)  
 
-## Initial BlackJack Logic  
+##How to Play
+The game will deal two cards to both the player and dealer. The player can then choose to "Hit" to draw another card, or "Stay" to end their turn. The dealer will then draw cards until they reach a total of 17 or higher, at which point the game will end and a winner will be declared. The winner is determined by the player and dealer hands' values, with the goal being to have a hand value of 21 or as close to 21 as possible without going over. Click on the "New Game" button to start a new round.
 
-initialize deck of 52 cards  
+##How to Run
+You can play the game by clicking on this [link.](https://vbeni.github.io/Project1_BlackJack/)
 
-shuffle deck of cards  
-
-deal 2 cards to player and 2 cards to dealer   
-
-check if either player or dealer have blackjack(21)  
-
-if player has blackjack, player wins  
-
-if dealer has blackjack, dealer wins  
-
-if neither have blackjack then player turn  
-
-player chooses to hit or stand   
-
-if player hits then deal another card  
-
-if player hand > 21 , dealer wins   
-
-if player stands, then dealers turn  
-
-if dealers hand < 17, hit until >=17   
-
-if dealer hand > 21, then player wins   
-
-if player hand is close to 21 than dealer, player wins   
-
-if dealer hand is closer to 21 then dealer wins   
-
-if hands are = then tie is declared   
+##Sources
+The card images were sourced from [Website](https://unbent.itch.io/yewbi-playing-card-set-1)
+[Music](https://www.youtube.com/watch?v=RdfJMDalucI&ab_channel=OkamiDeluxe)
